@@ -3,7 +3,13 @@
 
 # Log file
 *.log
-
+apikey.js
+*.properties
+build/
+bin/
+.metadata/
+Servers/
+Properties/
 # BlueJ files
 *.ctxt
 
