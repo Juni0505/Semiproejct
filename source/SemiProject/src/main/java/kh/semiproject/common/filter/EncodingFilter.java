@@ -13,7 +13,7 @@ public class EncodingFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("적용이 되나??");
+//		System.out.println("적용이 되나??");
 		// 한글 깨짐 방지
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");

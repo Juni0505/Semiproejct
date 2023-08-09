@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<jsp:include page="/WEB-INF/view/msg/msg.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 </head>
 <body>
@@ -14,6 +15,7 @@
         <label for="member_Id">아이디:</label>
         <input type="text" name="member_Id" id="member_Id" required>
         <button type="button" id="btncheck">중복 확인</button>
+        <br>
         <!-- <div id="checkResult"></div><br> -->
         
         <label for="member_Pwd">비밀번호:</label>

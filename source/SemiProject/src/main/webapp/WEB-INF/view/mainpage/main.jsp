@@ -16,14 +16,19 @@
 </script>
 </head>
 <body>
-[ ${markerList}]
 <div style = "text-align:center; margin-bottom:2px;">
     <div>
         <h1 style="font-family: 'Lobster', cursive"><a href="<%=request.getContextPath()%>/main">View KH restaurants</a></h1>
     </div>
     <div>
         <span><a href="<%=request.getContextPath()%>/join">회원가입</a></span>
+        <c:if test="${not empty mid }">
+        
+       	<span><a href="<%=request.getContextPath()%>/main?logout=1">로그아웃</a></span>
+        </c:if>
+        <c:if test="${empty mid }">
         <span><a href="<%=request.getContextPath()%>/login">로그인</a></span>
+        </c:if>
         <span><a href="<%=request.getContextPath()%>/board">가게등록</a></span>
     </div>
 </div>
@@ -31,7 +36,7 @@
 	<div id="map" style="width: 100%; height: 600px;"></div>
 	
 	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=WEATHER_API"></script>
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=apikey"></script>
 	<script>
 		var container = document.getElementById('map');
 		var options = {

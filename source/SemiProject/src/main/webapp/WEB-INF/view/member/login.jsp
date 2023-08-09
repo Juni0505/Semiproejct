@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
+<jsp:include page="/WEB-INF/view/msg/msg.jsp"></jsp:include>
 </head>
 <body>
     <h1>로그인</h1>
@@ -17,5 +18,6 @@
         
         <input type="submit" value="로그인">
     </form>
+    
 </body>
 </html>

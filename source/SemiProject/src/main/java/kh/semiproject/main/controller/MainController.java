@@ -33,6 +33,14 @@ public class MainController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("msg", request.getSession().getAttribute("msg"));
+		request.getSession().removeAttribute("msg");
+		
+		if(request.getParameter("logout").equals("1")) {
+			request.getSession().removeAttribute("mid");
+		}
+			
+		
 		MainService service = new MainService();
 		List<MainVo> result = service.selectList();
 		System.out.println(result);

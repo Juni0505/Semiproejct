@@ -40,6 +40,12 @@ public class JoinController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		if(request.getSession().getAttribute("msg") instanceof String) {
+			String msg = (String)request.getSession().getAttribute("msg");
+			request.setAttribute("msg", msg);
+			request.getSession().removeAttribute("msg");
+		}
+		
 		MemberService service = new MemberService();
 		String checkId =request.getParameter("member_Id");
 		System.out.println(checkId);
@@ -51,6 +57,8 @@ public class JoinController extends HttpServlet {
 			System.out.println("사용가능");
 			request.setAttribute("check", check);
 		}
+		
+		
 		
 		String member_Id = request.getParameter("member_Id");
 		String member_Pwd = request.getParameter("member_Pwd");

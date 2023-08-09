@@ -31,8 +31,10 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setAttribute("msg", request.getSession().getAttribute("msg"));
+		request.getSession().removeAttribute("msg");
 		request.getRequestDispatcher("/WEB-INF/view/member/login.jsp").forward(request, response);
-
+		
 	}
 
 	/**
@@ -41,6 +43,11 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		if (request.getSession().getAttribute("msg") instanceof String) {
+			String msg = (String)request.getSession().getAttribute("msg");
+			request.getSession().removeAttribute("msg");
+			request.setAttribute("msg", msg);
+		}
 		MemberService service = new MemberService();
 		String member_Id = request.getParameter("member_Id");
 		String member_Pwd = request.getParameter("member_Pwd");
@@ -48,16 +55,18 @@ public class LoginController extends HttpServlet {
 		System.out.println(result);
 		if (result == null) {
 			System.out.println("로그인 실패");
-			response.sendRedirect(request.getContextPath() + "/join");
+			request.getSession().setAttribute("msg", "정보를 다시 확인하고 입력해주세요");
+			response.sendRedirect(request.getContextPath() + "/login");
 		} else if (member_Pwd.equals(result)) {
 			System.out.println("로그인 성공");
+			request.getSession().setAttribute("msg", member_Id + "님 환영합니다");
+			request.getSession().setAttribute("mid", member_Id);
 			response.sendRedirect(request.getContextPath() + "/main");
-			request.getSession().setAttribute(member_Pwd, result);
 		} else if (!(member_Pwd.equals(result))) {
 			System.out.println("비밀번호 오류");
+			request.getSession().setAttribute("msg", "비밀번호 오류입니다. 다시 확인해주세요");
 			response.sendRedirect(request.getContextPath() + "/login");
 
 		}
-
 	}
 }
