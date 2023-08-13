@@ -69,13 +69,41 @@ public class JoinController extends HttpServlet {
 		String bs_Number = request.getParameter("bs_Number");
 		String bs_Manager = request.getParameter("bs_Manager");
 		
-		
 		if (member_Type == 0) {
-			MemberDto vo = new MemberDto(member_Id, member_Pwd, member_Name, member_Tel, member_Email, member_Type);
-			service.insert(vo);
+		    MemberDto vo = new MemberDto(member_Id, member_Pwd, member_Name, member_Tel, member_Email, member_Type);
+		    int result = service.insert(vo);
+		    
+		    if (result == 1) {
+		        // 일반 회원가입 성공 처리
+		        // 성공한 경우에 대한 추가적인 로직을 작성
+		    	request.getSession().setAttribute("msg", member_Id+"님 회원가입이 완료되었습니다. 로그인부탁드립니다.");
+				response.sendRedirect(request.getContextPath() + "/login");
+				
+		    } else {
+		        // 일반 회원가입 실패 처리
+		        // 실패한 경우에 대한 추가적인 로직을 작성
+		    	request.getSession().setAttribute("msg", "입력정보를 다시 확인하시길 바랍니다.");
+				response.sendRedirect(request.getContextPath() + "/join");
+		    }
 		} else {
-			MemberDto vo = new MemberDto(member_Id, member_Pwd, member_Name, member_Tel, member_Email, member_Type, bs_Number, bs_Manager);
-			service.insert(vo);
+		    MemberDto vo = new MemberDto(member_Id, member_Pwd, member_Name, member_Tel, member_Email, member_Type, bs_Number, bs_Manager);
+		    int result = service.insert(vo);
+		    
+		    if (result == 1) {
+		        // 비지니스 회원가입 성공 처리
+		        // 성공한 경우에 대한 추가적인 로직을 작성
+		    	request.getSession().setAttribute("msg", member_Id+"님 회원가입이 완료되었습니다. 로그인부탁드립니다.");
+				response.sendRedirect(request.getContextPath() + "/login");
+		    	
+		    } else {
+		        // 비지니스 회원가입 실패 처리
+		        // 실패한 경우에 대한 추가적인 로직을 작성
+		    	request.getSession().setAttribute("msg", "입력정보를 다시 확인하시길 바랍니다.");
+				response.sendRedirect(request.getContextPath() + "/join");
+		    }
 		}
+
+		
+		
 	}
 }
