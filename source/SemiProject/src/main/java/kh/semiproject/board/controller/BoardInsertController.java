@@ -32,7 +32,6 @@ public class BoardInsertController extends HttpServlet {
 		String bsNumber = req.getParameter("bsNumber");
 		String btitle = req.getParameter("btitle");
 		String bcontent = req.getParameter("bcontent");
-		String bwriteDate = req.getParameter("bwriteDate");
 		String bwriter = req.getParameter("bwriter");
 		String baddress = req.getParameter("baddress");
 		String btel = req.getParameter("btel");
@@ -42,7 +41,7 @@ public class BoardInsertController extends HttpServlet {
 
 		BoardService service = new BoardService();
 		
-		int result = service.storeInsert(new BoardDto(bsNumber, btitle, bcontent, bwriteDate, bwriter, baddress, btel, bshopName, lat, lng));
+		int result = service.storeInsert(new BoardDto(bsNumber, btitle, bcontent,bwriter, baddress, btel, bshopName, lat, lng));
 		if(result == 1) {
 			System.out.println("가게등록 성공");
 			req.getSession().setAttribute("msg", "가게가 성공적으로 등록 되었습니다.");

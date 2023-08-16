@@ -15,7 +15,6 @@ public class BoardService {
 		int result = 0;
 		Connection conn = getConnection();
 		result = dao.storeInsert(conn, dto);
-		commit(conn);
 		close(conn);
 		return result;
 	}

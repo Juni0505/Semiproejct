@@ -31,8 +31,8 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		request.setAttribute("msg", request.getSession().getAttribute("msg"));
-//		request.getSession().removeAttribute("msg");
+		request.setAttribute("msg", request.getSession().getAttribute("msg"));
+		request.getSession().removeAttribute("msg");
 		request.getRequestDispatcher("/WEB-INF/view/member/login.jsp").forward(request, response);
 		
 	}

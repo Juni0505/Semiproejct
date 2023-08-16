@@ -61,19 +61,21 @@
                 restaurants</a></h1>
     </div>
     <div class="menu">
-        <a href="<%=request.getContextPath()%>/join">회원가입</a>
         <c:if test="${not empty mid }">
+        <a href="<%=request.getContextPath()%>/board/insert" class="btn btn-success">가게등록</a>
+        <a href="<%=request.getContextPath()%>/board" class="btn btn-success">가게리스트</a>
             <form action="${pageContext.request.contextPath}/logout" method="post">
                 <button type="submit" class="btn btn-light">로그아웃</button>
             </form>
         </c:if>
         <c:if test="${empty mid }">
+        <a href="<%=request.getContextPath()%>/join">회원가입</a>
             <a href="<%=request.getContextPath()%>/login">로그인</a>
         </c:if>
-        <a href="<%=request.getContextPath()%>/board" class="btn btn-success">가게등록</a>
+        
     </div>
 </div>
-	<h1>지도 표시하기</h1>
+	<h1 style="text-align: center;">KH 지도</h1>
 	<div id="map" style="width: 100%; height: 600px;"></div>
 	
 	<script type="text/javascript"
@@ -102,6 +104,7 @@
 		var map = new kakao.maps.Map(container, options);
 		var first_positions = markerArr;
 			
+	
 		// 첫번째 마커 생성
 
 		for (var i = 0; i < first_positions.length; i++) {

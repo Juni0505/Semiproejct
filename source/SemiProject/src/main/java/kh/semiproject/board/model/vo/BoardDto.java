@@ -40,13 +40,11 @@ public class BoardDto {
 	}
 	
 	// 가게등록 게시글 작성
-	public BoardDto(String bsNumber, String btitle, String bcontent, String bwriteDate, String bwriter, String baddress,
+	public BoardDto(String bsNumber, String btitle,String bcontent, String bwriter, String baddress,
 			String btel, String bshopName, double lat, double lng) {
-		super();
 		this.bsNumber = bsNumber;
 		this.btitle = btitle;
 		this.bcontent = bcontent;
-		this.bwriteDate = bwriteDate;
 		this.bwriter = bwriter;
 		this.baddress = baddress;
 		this.btel = btel;
